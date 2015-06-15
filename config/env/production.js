@@ -8,6 +8,7 @@ module.exports = {
 			pass: ''
 		}
 	},
+	port: 80,
 	log: {
 		// Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
 		format: 'combined',

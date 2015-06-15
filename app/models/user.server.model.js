@@ -91,6 +91,13 @@ var UserSchema = new Schema({
 	}
 });
 
+//Adding properties for App specific elements
+UserSchema.add({gender: {
+		type: String,
+		default: '',
+		trim: true
+	}});
+
 /**
  * Hook a pre save method to hash the password
  */
