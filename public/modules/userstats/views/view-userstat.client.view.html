@@ -1,6 +1,6 @@
 <section data-ng-controller="UserstatsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="userstat.name"></h1>
+		<h1> <span data-ng-bind="userstat.user.displayName"></span>'s Measures</h1>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == userstat.user._id))">
 		<a class="btn btn-primary" href="/#!/userstats/{{userstat._id}}/edit">
@@ -14,8 +14,23 @@
 		<em class="text-muted">
 			Posted on
 			<span data-ng-bind="userstat.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="userstat.user.displayName"></span>
 		</em>
 	</small>
+	<h3>Lifts</h3>
+	Snatch: {{userstat.snatchMax}} lbs<br/>
+	Clean and Jerk: {{userstat.cleanJerkMax}} lbs<br/>
+	Bench Press: {{userstat.backSquatMax}} lbs<br/>
+	Deadlift: {{userstat.deadMax}} lbs<br/>
+	Back Squat: {{userstat.backSquatMax}} lbs<br/>
+	<h3>Endurance</h3>
+	Six Lengths Time: {{userstat.sixLengthTime}} seconds<br/>
+	Burpee Test Score: {{userstat.burpeeMax}} <br/>
+	Beep Test Score: {{userstat.beepTestScore}} <br/>
+	LP Mile Time: {{userstat.lpMileTime}} seconds <br/>
+	1 km Row Time: {{userstat.kmRow}} seconds <br/>
+	<h3>Body</h3>
+	Box Jump Max: {{userstat.boxJumpMax}} inches<br/>
+	Long Jump Max: {{userstat.longJumpMax}} inches<br/>
+	Weighted Plank Time: {{userstat.plankTime}} <br/>
+	Max Chins: {{userstat.chinMax}} <br/>
 </section>

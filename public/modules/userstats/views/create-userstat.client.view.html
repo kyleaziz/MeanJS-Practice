@@ -1,14 +1,92 @@
 <section data-ng-controller="UserstatsController">
     <div class="page-header">
-        <h1>New Userstat</h1>
+        <h1>Record your test week results</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="snatchMax">Snatch - One Rep Max</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="number" data-ng-model="snatchMax" id="snatchMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="cleanJerkMax">Clean and Jerk - One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="cleanJerkMax" id="cleanJerkMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="backSquatMax">Back Squat - One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="backSquatMax" id="backSquatMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="benchMax">Bench Press - One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="benchMax" id="benchMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="deadMax">Deadlift - One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="deadMax" id="deadMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="burpeeMax">Burpee Test Score</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="burpeeMax" id="burpeeMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sixLengthTime">6 Lengths Time (in seconds)</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="sixLengthTime" id="sixLengthTime" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="kmRow">Kilometer Row Time (in seconds)</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="kmRow" id="kmRow" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="chinMax">Max Chinups</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="chinMax" id="chinMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="plankTime">Weighted Plank Time (in seconds)</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="plankTime" id="plankTime" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="lpMileTime">LP Mile Time (in seconds)</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="lpMileTime" id="lpMileTime" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="boxJumpMax">Max Box Jump Height</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="boxJumpMax" id="boxJumpMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="longJumpMax">Max Long Jump Length</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="longJumpMax" id="longJumpMax" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="beepTestScore">Beep Test Score</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="beepTestScore" id="beepTestScore" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">

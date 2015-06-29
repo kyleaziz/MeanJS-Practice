@@ -9,7 +9,21 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 		$scope.create = function() {
 			// Create new Userstat object
 			var userstat = new Userstats ({
-				name: this.name
+				snatchMax: this.snatchMax,
+				cleanJerkMax: this.cleanJerkMax,
+				backSquatMax: this.backSquatMax,
+				benchMax: this.benchMax,
+				burpeeMax: this.burpeeMax,
+				deadMax: this.deadMax,
+				sixLengthTime: this.sixLengthTime,
+				kmRow: this.kmRow,
+				chinMax: this.chinMax,
+				plankTime: this.plankTime,
+				lpMileTime: this.lpMileTime,
+				boxJumpMax: this.boxJumpMax,
+				longJumpMax: this.longJumpMax,
+				beepTestScore: this.beepTestScore,
+				testWeek: 'June 2015 Test Week'
 			});
 
 			// Redirect after save

@@ -10,12 +10,48 @@ var mongoose = require('mongoose'),
  * Userstat Schema
  */
 var UserstatSchema = new Schema({
-	name: {
-		type: String,
-		default: '',
-		required: 'Please fill Userstat name',
-		trim: true
+	snatchMax: {
+  	type: Number
 	},
+	cleanJerkMax: {
+  	type: Number
+	},
+	backSquatMax: {
+  	type: Number
+	},
+	benchMax: {
+  	type: Number
+	},
+	deadMax: {
+  	type: Number
+	},
+	sixLengthTime: {
+  	type: Number
+	},
+	burpeeMax: {
+  	type: Number
+	},
+	kmRow: {
+  	type: Number
+	},
+	chinMax: {
+  	type: Number
+	},
+	plankTime: {
+  	type: Number
+	},
+	lpMileTime: {
+  	type: Number
+	},
+	boxJumpMax: {
+  	type: Number
+	},
+	longJumpMax:{
+  	type: Number
+  },
+	beepTestScore: {
+		type: Number
+  },
 	created: {
 		type: Date,
 		default: Date.now
@@ -23,6 +59,9 @@ var UserstatSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
+	},
+	testWeek: {
+		type: String
 	}
 });
 
