@@ -6,8 +6,7 @@ angular.module('userstats').run(['Menus',
     // Set top bar menu items
     Menus.addMenuItem('topbar', 'Testing Week', 'userstats', 'dropdown','/userstats');
     Menus.addSubMenuItem('topbar', 'userstats', 'Show Results', 'userstats');
-    Menus.addSubMenuItem('topbar', 'userstats', 'Record Results', 'userstats/create');
-    Menus.addSubMenuItem('topbar', 'userstats', 'My Results', 'userstats');
+    Menus.addSubMenuItem('topbar', 'userstats', 'My Results', 'myUserstats');
 
   }
 ]);

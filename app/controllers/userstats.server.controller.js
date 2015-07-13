@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Userstat = mongoose.model('Userstat'),
+	User = mongoose.model('User'),
 	_ = require('lodash');
 
 /**
@@ -74,6 +75,19 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) { 
 	Userstat.find().sort('-created').populate('user', 'displayName').exec(function(err, userstats) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(userstats);
+		}
+	});
+};
+
+exports.listMine = function(req, res) { 
+	var user = new User(req.user);
+	Userstat.find({user: user._id}).sort('-created').populate('user', 'displayName').exec(function(err, userstats) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

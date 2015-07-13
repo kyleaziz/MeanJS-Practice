@@ -9,6 +9,9 @@ module.exports = function(app) {
 		.get(userstats.list)
 		.post(users.requiresLogin, userstats.create);
 
+	app.route('/myUserstats')
+		.get(userstats.listMine);
+
 	app.route('/userstats/:userstatId')
 		.get(userstats.read)
 		.put(users.requiresLogin, userstats.hasAuthorization, userstats.update)

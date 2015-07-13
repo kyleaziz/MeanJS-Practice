@@ -10,4 +10,9 @@ angular.module('userstats').factory('Userstats', ['$resource',
 			}
 		});
 	}
+])
+.factory('MyUserstats', ['$resource',
+  function($resource) {
+    return $resource('myUserstats');
+  }
 ]);

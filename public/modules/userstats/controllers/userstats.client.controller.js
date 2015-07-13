@@ -1,8 +1,8 @@
 'use strict';
 
 // Userstats controller
-angular.module('userstats').controller('UserstatsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Userstats',
-	function($scope, $stateParams, $location, Authentication, Userstats) {
+angular.module('userstats').controller('UserstatsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Userstats', 'MyUserstats',
+	function($scope, $stateParams, $location, Authentication, Userstats, MyUserstats) {
 		$scope.authentication = Authentication;
 
 		// Create new Userstat
@@ -31,10 +31,15 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 				$location.path('userstats/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				//$scope.name = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+		};
+
+		$scope.useAsORM = function(userstat) {
+			userstat.user.measures.push(userstat._id);
+			userstat.user.$update();
 		};
 
 		// Remove existing Userstat
@@ -68,6 +73,11 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 		// Find a list of Userstats
 		$scope.find = function() {
 			$scope.userstats = Userstats.query();
+		};
+
+		$scope.findMine = function() {
+			$scope.userstats = MyUserstats.query();
+			//Userstats.findMine($scope.user);
 		};
 
 		// Find existing Userstat

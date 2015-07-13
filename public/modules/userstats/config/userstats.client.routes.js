@@ -9,6 +9,10 @@ angular.module('userstats').config(['$stateProvider',
 			url: '/userstats',
 			templateUrl: 'modules/userstats/views/list-userstats.client.view.html'
 		}).
+		state('listMyUserstats', {
+			url: '/myUserstats',
+			templateUrl: 'modules/userstats/views/list-my-userstats.client.view.html'
+		}).
 		state('createUserstat', {
 			url: '/userstats/create',
 			templateUrl: 'modules/userstats/views/create-userstat.client.view.html'

@@ -1,4 +1,4 @@
-<section data-ng-controller="UserstatsController" data-ng-init="find()">
+<section data-ng-controller="UserstatsController" data-ng-init="findMine()">
     <div class="page-header">
         <h1>June 2015 - Test Week Results</h1>
     </div>
@@ -13,6 +13,6 @@
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!userstats.$resolved || userstats.length">
-        You haven't recorded test week results yet, why don't you <a href="/#!/userstats/create">enter them now</a>?
+    	You haven't recorded test week results yet, why don't you <a href="/#!/userstats/create">enter them now</a>?
     </div>
 </section>
