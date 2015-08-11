@@ -13,7 +13,7 @@ var WorkoutplanSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		//required: 'Please fill Workout name',
+		required: 'Please fill Workoutplan name',
 		trim: true
 	},
 	created: {
@@ -26,36 +26,26 @@ var WorkoutplanSchema = new Schema({
 	}
 });
 
-WorkoutplanSchema.add({description: {
-		type: String,
-		default: 'lift',
-		trim: true
-}});
-
-// Two properties here for the same functionality. Started with tasks as an array of detailed objects that needed to be completed. 
-// Added the subTasks type that references tasks as their own objects and collection in the database.
-WorkoutplanSchema.add({tasks: [
-]});
-
 WorkoutplanSchema.add({
-	subTasks: [{type: Schema.ObjectId, ref: 'woTasks'}]
+	description: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	phase: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	program: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	date: {
+		type: Date
+	},
+	tasks: []
 });
-
-WorkoutplanSchema.add({woDate: {
-		type: Date,
-		required: 'You didn\'t specify a date'
-}});
-
-WorkoutplanSchema.add({phase: {
-		type: String,
-		trim: true,
-		required: 'No phase was given'
-}});
-
-WorkoutplanSchema.add({program: {
-		type: String,
-		trim: true//,
-		//required: 'This workout needs to be part of a program. Please choose one.'
-	}});
 
 mongoose.model('Workoutplan', WorkoutplanSchema);

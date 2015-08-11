@@ -20,29 +20,18 @@
 	</small>
 	<p class="lead" data-ng-bind="workoutplan.description"></p>
 
+
 	<div class="list-group">
         <div data-ng-repeat="task in workoutplan.tasks" class="list-group-item">
 						<h4 class="list-group-item-heading" data-ng-bind="task.name"></h4>
             <p>
-            	<ng-pluralize count="task.sets"
-                 when="{'0': '',
-                     'one': '1 set',
-                     'other': '{} sets'}">
-							</ng-pluralize>
-							<span ng-if="task.sets && task.reps">
-								of
-							</span>
-							<ng-pluralize count="task.reps"
-                 when="{'0': '',
-                     'one': '1 rep',
-                     'other': '{} reps'}">
-							</ng-pluralize>
-            	<br/>
-            		<span ng-show="task.baseLift"> The weight is {{task.weight}} % of your {{task.baseLift}} one rep max </span>
-            		<span ng-hide="task.baseLift"> The weight is {{task.weight}} lbs</span>
-            	</span>
+              <span data-ng-bind="task.description"></span>
             </p>
-
+            <p>
+              <span ng-repeat="n in task.sets track by $index">
+                {{task.sets[$index]}} of {{task.reps[$index]}} <span ng-show="task.weight">at {{task.weight[$index]}}</span> <span ng-show="task.baseLift"> of your {{task.baseLift}} one rep max</span><br/>
+              </span>
+            </p>
         </div>
     </div>
 
@@ -50,8 +39,9 @@
 	Things to Add: Show only to users with the Admin role. Separate tasks as their own CRUD Objects. 
 	Ie. be able to delete tasks by pressing a button next to the task, then edit.
 -->
+  <!--h3>Add Workout Task</h3-->
   <!--section data-ng-controller="WotasksController"-->
-    <div class="add-form">
+    <!--div class="add-form">
     	<form class="form-horizontal" data-ng-submit="addTask()" novalidate>
     	<div class="form-group">
         <label class="control-label" for="name">Name</label>
@@ -60,36 +50,42 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="control-label" for="addTaskDescription">Description</label>
+        <div class="controls">
+          <input type="text" data-ng-model="addTaskDescription" id="description" class="form-control" placeholder="Description">
+        </div>
+      </div>
+      <div class="form-group">
         <label class="control-label" for="reps">Reps</label>
         <div class="controls">
-          <input type="number" data-ng-model="addTaskReps" id="reps" class="form-control" placeholder="Reps">
+          <input ng-list data-ng-model="addTaskReps" id="reps" class="form-control" placeholder="Reps">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label" for="sets">Sets</label>
         <div class="controls">
-          <input type="number" data-ng-model="addTaskSets" id="sets" class="form-control" placeholder="Sets">
+          <input ng-list data-ng-model="addTaskSets" id="sets" class="form-control" placeholder="Sets">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label" for="weight">Weight</label>
         <div class="controls">
-          <input type="number" data-ng-model="addTaskWeight" id="weight" class="form-control" placeholder="Weight">
+          <input ng-list data-ng-model="addTaskWeight" id="weight" class="form-control" placeholder="Weight">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label" for="baseLift">Base Lift</label>
         <div class="controls">
-          <select data-ng-model="addTaskBaseLift" id="baseLift" class="form-control" ng-options="lift.lift as lift.name for lift in bases">
+          <select data-ng-model="addTaskBaseLift" id="baseLift" class="form-control" ng-options="lift.name as lift.name for lift in bases">
           	<option value="">-- No Base Lift --</option>
           </select>
         </div>
       </div>
       <div class="form-group">
-                    <input type="submit" value="Add Task" class="btn btn-default">
+        <input type="submit" value="Add Task" class="btn btn-default">
       </div>
       
     </form>
-    </div>
+    </div-->
   <!--/section-->
 </section>

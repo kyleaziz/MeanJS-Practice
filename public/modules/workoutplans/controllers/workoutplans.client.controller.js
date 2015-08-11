@@ -1,7 +1,7 @@
 'use strict';
 
 // Workoutplans controller
-angular.module('workoutplans').controller('WorkoutplansController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workoutplans', 'angularMoment',
+angular.module('workoutplans').controller('WorkoutplansController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workoutplans',
 	function($scope, $stateParams, $location, Authentication, Workoutplans) {
 		$scope.authentication = Authentication;
 		$scope.bases = [
@@ -13,23 +13,24 @@ angular.module('workoutplans').controller('WorkoutplansController', ['$scope', '
 			{name: 'Front Squat', lift: 'frontSquat'}
 		];
 		
-		$scope.programs = [ 'Group Training', 'Athletes', 'BABEies', 'Performance', 'Bootcamp', 'Lift'
-			//{name: 'Group Training'},
-			//{name: 'Athletes'},
-			//{name: 'BABEies'},
-			//{name: 'Performance'},
-			//{name: 'Bootcamp'},
-			//{name: 'Lift'}
+		$scope.programs = [
+			{name: 'Group Training'},
+			{name: 'Athletes'},
+			{name: 'BABEies'},
+			{name: 'Performance'},
+			{name: 'Bootcamp'},
+			{name: 'Lift'}
 		];
+
 		// Create new Workoutplan
 		$scope.create = function() {
 			// Create new Workoutplan object
 			var workoutplan = new Workoutplans ({
 				name: this.name,
 				description: this.description,
-				woDate: this.woDate,
 				phase: this.phase,
-				program: this.program
+				program: this.program,
+				date: this.date
 			});
 
 			// Redirect after save
@@ -38,10 +39,6 @@ angular.module('workoutplans').controller('WorkoutplansController', ['$scope', '
 
 				// Clear form fields
 				$scope.name = '';
-				$scope.description = '';
-				$scope.woDate = '';
-				$scope.phase = '';
-				$scope.program = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -82,13 +79,24 @@ angular.module('workoutplans').controller('WorkoutplansController', ['$scope', '
 				sets: $scope.addTaskSets,
 				reps: $scope.addTaskReps,
 				baseLift: $scope.addTaskBaseLift,
-				weight: $scope.addTaskWeight
+				weight: $scope.addTaskWeight,
+				description: $scope.addTaskDescription
 			});
 
 			var workoutplan = $scope.workoutplan;
 
 			workoutplan.$update(function() {
-				$location.path('workoutplans/' + workoutplan._id);
+				$location.path('workoutplans/' + workoutplan._id +'/edit');
+			
+				//clear form fields
+				$scope.addTaskName = '';
+				$scope.addTaskSets = '';
+				$scope.addTaskReps = '';
+				$scope.addTaskBaseLift = '';
+				$scope.addTaskWeight = '';
+				$scope.addTaskDescription = '';
+
+			
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
