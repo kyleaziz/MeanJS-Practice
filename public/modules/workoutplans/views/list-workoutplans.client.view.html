@@ -1,6 +1,6 @@
 <section data-ng-controller="WorkoutplansController" data-ng-init="find()">
     <div class="page-header">
-        <h1>Workout Plans</h1>
+        <h1>Workouts</h1>
     </div>
     <div class="list-group">
         <a data-ng-repeat="workoutplan in workoutplans" data-ng-href="#!/workoutplans/{{workoutplan._id}}" class="list-group-item">
@@ -11,8 +11,8 @@
             <small class="list-group-item-text">
                 Created on
                 <span data-ng-bind="workoutplan.created | date:'medium'"></span>
-                by
-                <span data-ng-bind="workoutplan.user.displayName"></span>
+                <!--by
+                <span data-ng-bind="workoutplan.user.displayName"></span-->
             </small>
         </a>
     </div>
