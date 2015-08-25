@@ -100,7 +100,15 @@ exports.workoutplanByID = function(req, res, next, id) {
  * Workoutplan authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.workoutplan.user.id !== req.user.id) {
+	if //((req.workoutplan.user.id !== req.user.id) || 
+	    ((req.user.roles.indexOf('admin') === -1)) {
+		return res.status(403).send('User is not authorized');
+	}
+	next();
+};
+
+exports.hasAdmin = function(req, res, next) {
+	if (req.user.roles.indexOf('admin') > -1) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();

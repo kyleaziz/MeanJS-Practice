@@ -8,12 +8,6 @@
 			<h4 class="list-group-item-heading" data-ng-bind="workoutplan.name"></h4>
             <p class="lead" data-ng-bind="workoutplan.description"></p>
             <p><span ng-repeat="task in workoutplan.tasks">{{task.name}}<br/></span></p>
-            <small class="list-group-item-text">
-                Created on
-                <span data-ng-bind="workoutplan.created | date:'medium'"></span>
-                <!--by
-                <span data-ng-bind="workoutplan.user.displayName"></span-->
-            </small>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!workoutplans.$resolved || workoutplans.length">
