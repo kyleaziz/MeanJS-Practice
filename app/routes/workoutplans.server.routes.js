@@ -7,7 +7,7 @@ module.exports = function(app) {
 	// Workoutplans Routes
 	app.route('/workoutplans')
 		.get(workoutplans.list)
-		.post(users.requiresLogin, workoutplans.create);
+		.post(users.requiresLogin, workoutplans.hasAuthorization, workoutplans.create);
 
 	app.route('/workoutplans/:workoutplanId')
 		.get(workoutplans.read)
