@@ -15,4 +15,9 @@ angular.module('userstats').factory('Userstats', ['$resource',
   function($resource) {
     return $resource('myUserstats');
   }
+])
+.factory('MonthUserstats', ['$resource',
+  function($resource) {
+    return $resource('monthUserstats');
+  }
 ]);

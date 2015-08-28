@@ -12,10 +12,15 @@ module.exports = function(app) {
 	app.route('/myUserstats')
 		.get(userstats.listMine);
 
+	app.route('/monthUserstats')
+		.get(userstats.listMonth);
+
 	app.route('/userstats/:userstatId')
 		.get(userstats.read)
 		.put(users.requiresLogin, userstats.hasAuthorization, userstats.update)
 		.delete(users.requiresLogin, userstats.hasAuthorization, userstats.delete);
+
+
 
 	// Finish by binding the Userstat middleware
 	app.param('userstatId', userstats.userstatByID);

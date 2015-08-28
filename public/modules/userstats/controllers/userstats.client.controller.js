@@ -1,8 +1,8 @@
 'use strict';
 
 // Userstats controller
-angular.module('userstats').controller('UserstatsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Userstats', 'MyUserstats',
-	function($scope, $stateParams, $location, Authentication, Userstats, MyUserstats) {
+angular.module('userstats').controller('UserstatsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Userstats', 'MyUserstats', 'MonthUserstats',
+	function($scope, $stateParams, $location, Authentication, Userstats, MyUserstats, MonthUserstats) {
 		$scope.authentication = Authentication;
 
 		// Create new Userstat
@@ -23,7 +23,7 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 				boxJumpMax: this.boxJumpMax,
 				longJumpMax: this.longJumpMax,
 				beepTestScore: this.beepTestScore,
-				testWeek: 'June 2015 Test Week'
+				testWeek: 'September 2015 Test Week'
 			});
 
 			// Redirect after save
@@ -78,6 +78,10 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 		$scope.findMine = function() {
 			$scope.userstats = MyUserstats.query();
 			//Userstats.findMine($scope.user);
+		};
+
+		$scope.findMonth = function() {
+			$scope.userstats = MonthUserstats.query();
 		};
 
 		// Find existing Userstat

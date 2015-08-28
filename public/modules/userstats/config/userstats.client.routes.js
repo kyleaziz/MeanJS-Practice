@@ -13,6 +13,10 @@ angular.module('userstats').config(['$stateProvider',
 			url: '/myUserstats',
 			templateUrl: 'modules/userstats/views/list-my-userstats.client.view.html'
 		}).
+		state('listMonthUserstats', {
+			url: '/monthUserstats',
+			templateUrl: 'modules/userstats/views/list-month-userstats.client.view.html'
+		}).
 		state('createUserstat', {
 			url: '/userstats/create',
 			templateUrl: 'modules/userstats/views/create-userstat.client.view.html'
