@@ -98,6 +98,10 @@ UserSchema.add({gender: {
 		trim: true
 	}});
 
+UserSchema.add({latestStat: {
+		type: Schema.ObjectId,
+		ref: 'Userstat'
+	}});
 /**
  * Hook a pre save method to hash the password
  */

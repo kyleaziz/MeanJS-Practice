@@ -16,4 +16,25 @@
 
 		</ul>
 	</div>
+	<section data-ng-controller="UserstatsController" data-ng-init="findMyLatest(authentication.user.latestStat)" ng-if="authentication.user.latestStat">
+        <h3>{{userstat.testWeek}} Results</h3>
+  <div data-ng-show="userstat.snatchMax"> Snatch: {{userstat.snatchMax}} lbs<br/></div>
+  <div data-ng-show="userstat.cleanJerkMax"> Clean and Jerk: {{userstat.cleanJerkMax}} lbs<br/></div>
+  <div data-ng-show="userstat.benchMax"> Bench Press: {{userstat.benchMax}} lbs<br/></div>
+  <div data-ng-show="userstat.deadMax"> Deadlift: {{userstat.deadMax}} lbs<br/></div>
+  <div data-ng-show="userstat.backSquatMax"> Back Squat: {{userstat.backSquatMax}} lbs<br/></div>
+  <div data-ng-show="userstat.sixLengthTime"> Six Lengths Time: {{userstat.sixLengthTime}} seconds<br/></div>
+  <div data-ng-show="userstat.burpeeMax"> Burpee Test Score: {{userstat.burpeeMax}} <br/></div>
+  <div data-ng-show="userstat.beepTestScore"> Beep Test Score: {{userstat.beepTestScore}} <br/></div>
+  <div data-ng-show="userstat.lpMileTime"> LP Mile Time: {{userstat.lpMileTime}} seconds <br/></div>
+  <div data-ng-show="userstat.kmRow"> 1 km Row Time: {{userstat.kmRow}} seconds <br/></div>
+  <div data-ng-show="userstat.boxJumpMax"> Box Jump Max: {{userstat.boxJumpMax}} inches<br/></div>
+  <div data-ng-show="userstat.longJumpMax"> Long Jump Max: {{userstat.longJumpMax}} inches<br/></div>
+  <div data-ng-show="userstat.plankTime"> Weighted Plank Time: {{userstat.plankTime}} <br/></div>
+  <div data-ng-show="userstat.chinMax"> Max Chins: {{userstat.chinMax}} <br/></div>
+
+    <div class="alert alert-warning text-center" data-ng-hide="!userstats.$resolved || userstats.length">
+      You haven't recorded test week results yet, why don't you <a href="/#!/userstats/create">enter them now</a>?
+    </div>
+</section>
 </section>

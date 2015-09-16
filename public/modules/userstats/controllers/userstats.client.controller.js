@@ -37,11 +37,6 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 			});
 		};
 
-		$scope.useAsORM = function(userstat) {
-			userstat.user.measures.push(userstat._id);
-			userstat.user.$update();
-		};
-
 		// Remove existing Userstat
 		$scope.remove = function(userstat) {
 			if ( userstat ) { 
@@ -90,5 +85,19 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 				userstatId: $stateParams.userstatId
 			});
 		};
+
+		$scope.findMyLatest = function(statID) {
+			$scope.userstat = Userstats.get({ 
+				userstatId: statID
+			});
+		};
+
+		// Find logged in user's userstat for Sept
+		$scope.findMySept = function() {
+			$scope.userstat = Userstats.query({// $and: [{
+				testWeek: 'September 2015 Test Week'//},{user: Authentication.user._id}]
+			});
+		};
+
 	}
 ]);

@@ -15,6 +15,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 	var userstat = new Userstat(req.body);
 	userstat.user = req.user;
+	var user = req.user;
 
 	userstat.save(function(err) {
 		if (err) {
@@ -22,6 +23,14 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			user.latestStat = userstat._id;
+			user.save(function(err) {
+				if (err) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
+					});
+				}
+			});
 			res.jsonp(userstat);
 		}
 	});
