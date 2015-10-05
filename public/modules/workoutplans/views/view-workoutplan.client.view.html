@@ -21,7 +21,7 @@
             </p>
             <p>
               <span ng-repeat="n in task.sets track by $index">
-                {{task.sets[$index]}} of {{task.reps[$index]}} <span ng-show="task.weight">at {{task.weight[$index]}}</span> <span ng-show="task.baseLift"> of your {{task.baseLift}} one rep max</span><br/>
+                {{task.sets[$index]}} of {{task.reps[$index]}} <span ng-show="task.weights">at {{task.weights[$index]}}</span> <span ng-show="task.baseLift"> of your {{task.baseLift}} one rep max</span><br/>
               </span>
             </p>
         </div>
