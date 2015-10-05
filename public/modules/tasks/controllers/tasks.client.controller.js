@@ -4,17 +4,30 @@
 angular.module('tasks').controller('TasksController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tasks',
 	function($scope, $stateParams, $location, Authentication, Tasks) {
 		$scope.authentication = Authentication;
+		$scope.bases = [
+			{name: 'Squat', lift: 'squat'}, 
+			{name: 'Deadlift', lift: 'deadlift'}, 
+			{name: 'Bench Press', lift: 'benchPress'}, 
+			{name: 'Clean and Jerk', lift: 'cleanJerk'}, 
+			{name: 'Snatch', lift: 'snatch'},
+			{name: 'Front Squat', lift: 'frontSquat'}
+		];
 
 		// Create new Task
 		$scope.create = function() {
 			// Create new Task object
 			var task = new Tasks ({
-				name: this.name
+				name: this.name,
+				description: this.description,
+				reps: this.reps,
+				sets: this.sets,
+				weights: this.weights,
+				baseLift: this.baseLift
 			});
 
 			// Redirect after save
 			task.$save(function(response) {
-				$location.path('tasks/' + response._id);
+				$location.path('workoutplans/' + response._id);
 
 				// Clear form fields
 				$scope.name = '';

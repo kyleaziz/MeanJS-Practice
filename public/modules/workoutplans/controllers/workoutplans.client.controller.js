@@ -1,8 +1,8 @@
 'use strict';
 
 // Workoutplans controller
-angular.module('workoutplans').controller('WorkoutplansController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workoutplans',
-	function($scope, $stateParams, $location, Authentication, Workoutplans) {
+angular.module('workoutplans').controller('WorkoutplansController', ['$scope', '$stateParams', '$location', 'Authentication', 'Workoutplans', 'Tasks',
+	function($scope, $stateParams, $location, Authentication, Workoutplans, Tasks) {
 		$scope.authentication = Authentication;
 		$scope.bases = [
 			{name: 'Squat', lift: 'squat'}, 
@@ -36,9 +36,28 @@ angular.module('workoutplans').controller('WorkoutplansController', ['$scope', '
 			// Redirect after save
 			workoutplan.$save(function(response) {
 				$location.path('workoutplans/' + response._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 
+		$scope.createTask = function() {
+			// Create new Task object
+			var task = new Tasks ({
+				name: this.taskName,
+				description: this.taskDescription,
+				reps: this.taskReps,
+				sets: this.taskSets,
+				weights: this.taskWeights,
+				baseLift: this.taskBaseLift,
+				workoutplan: this.workoutplan._id
+			});
+
+			// Redirect after save
+			task.$save(function(response) {
+				$location.path('workoutplans/' + response._id);
 				// Clear form fields
-				$scope.name = '';
+				$scope.taskName = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

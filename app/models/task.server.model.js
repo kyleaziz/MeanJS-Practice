@@ -16,6 +16,17 @@ var TaskSchema = new Schema({
 		required: 'Please fill Task name',
 		trim: true
 	},
+	description: {
+		type: String,
+		trim: true
+	},
+	sets: [],
+	reps: [],
+	weights: [],
+	baseLift: {
+		type: String,
+		trim: true
+	},
 	created: {
 		type: Date,
 		default: Date.now
@@ -23,6 +34,10 @@ var TaskSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
+	},
+	workoutplan: {
+		type: Schema.ObjectId,
+		ref: 'Workoutplan'
 	}
 });
 

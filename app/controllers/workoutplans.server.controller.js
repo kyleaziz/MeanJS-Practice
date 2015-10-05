@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Workoutplans
  */
 exports.list = function(req, res) { 
-	Workoutplan.find().sort('-created').populate('user', 'displayName').exec(function(err, workoutplans) {
+	Workoutplan.find().sort('-created').populate('user', 'displayName').populate('tasks').exec(function(err, workoutplans) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,7 +88,7 @@ exports.list = function(req, res) {
  * Workoutplan middleware
  */
 exports.workoutplanByID = function(req, res, next, id) { 
-	Workoutplan.findById(id).populate('user', 'displayName').exec(function(err, workoutplan) {
+	Workoutplan.findById(id).populate('user', 'displayName').populate('tasks').exec(function(err, workoutplan) {
 		if (err) return next(err);
 		if (! workoutplan) return next(new Error('Failed to load Workoutplan ' + id));
 		req.workoutplan = workoutplan ;

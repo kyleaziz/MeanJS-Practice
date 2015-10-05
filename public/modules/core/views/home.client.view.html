@@ -6,14 +6,13 @@
 		<p></p>
 		
 		<ul>
-			<li>
+			<li ng-hide="authentication.user">
 				Click
 				<em>Sign Up</em>
 				to get started.
 			</li>
-			<li>Click <em>My Results</em> under the <em>Testing Week</em> menu heading to enter your test week results</li>
+			<li ng-hide="authentication.user.latestStat">Click <em>My Results</em> under the <em>Testing Week</em> menu heading to enter your test week results</li>
 			<li>Click the <em>Workouts</em> menu heading to see the workouts for this week</li>
-
 		</ul>
 	</div>
 	<section data-ng-controller="UserstatsController" data-ng-init="findMyLatest(authentication.user.latestStat)" ng-if="authentication.user.latestStat">

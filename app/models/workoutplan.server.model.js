@@ -45,7 +45,10 @@ WorkoutplanSchema.add({
 	date: {
 		type: Date
 	},
-	tasks: []
+	tasks: [{
+		type: Schema.ObjectId,
+		ref: 'Task'
+	}]
 });
 
 mongoose.model('Workoutplan', WorkoutplanSchema);

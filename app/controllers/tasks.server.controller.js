@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Task = mongoose.model('Task'),
+	Workoutplan = mongoose.model('Workoutplan'),
 	_ = require('lodash');
 
 /**
@@ -21,7 +22,20 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(task);
+			Workoutplan.findById(task.workoutplan).exec(function(err, workoutplan) {
+				if (err) {
+					return res.status(400).send({ message: errorHandler.getErrorMessage(err) });
+				}				
+				workoutplan.tasks.push(task);				
+				workoutplan.save(function(err) {
+					if (err) {
+						return res.status(400).send({
+							message: errorHandler.getErrorMessage(err)
+						});
+					}
+				});
+				res.jsonp(workoutplan);
+			});			
 		}
 	});
 };
