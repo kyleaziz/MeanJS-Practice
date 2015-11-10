@@ -11,18 +11,11 @@ var mongoose = require('mongoose'),
  */
 var ActivitySchema = new Schema({
 	name: {
-		type: String,
-		default: '',
-		required: 'Please fill Activity name',
-		trim: true
+		type: String
 	},
 	created: {
 		type: Date,
 		default: Date.now
-	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
 	},
 	baseLift: {
 		type: String
@@ -35,9 +28,19 @@ var ActivitySchema = new Schema({
 	},
 	weight: {
 		type: Number
+	},
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	}, 
+	task: { 
+		type: Schema.ObjectId, 
+		ref: 'Task' 
+	},
+	workout: {
+		type: Schema.ObjectId, 
+		ref: 'Workoutplan' 
 	}
-	// placeholder comment for tasks, which need to be created
-	//, task: { type: Schema.ObjectId, ref: 'Task' }
 });
 
 mongoose.model('Activity', ActivitySchema);

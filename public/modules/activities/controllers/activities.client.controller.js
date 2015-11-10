@@ -1,15 +1,27 @@
 'use strict';
 
 // Activities controller
-angular.module('activities').controller('ActivitiesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Activities',
-	function($scope, $stateParams, $location, Authentication, Activities) {
+angular.module('activities').controller('ActivitiesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Activities', 'Workoutplans', 'Userstats',
+	function($scope, $stateParams, $location, Authentication, Activities, Workoutplans, Userstats) {
 		$scope.authentication = Authentication;
+		$scope.wod = Workoutplans.get({ 
+				workoutplanId: '56123e3ca1579acc49c17db7'
+			});
+		$scope.userstat = Userstats.get({ 
+				userstatId: Authentication.user.latestStat
+			});
 
 		// Create new Activity
 		$scope.create = function() {
 			// Create new Activity object
 			var activity = new Activities ({
-				name: this.name
+				name: this.name,
+				reps: this.reps,
+				sets: this.sets,
+				weight: this.weight,
+				baseLift: this.baseLift,
+				workout: this.wod,
+				task: this.task
 			});
 
 			// Redirect after save
@@ -17,7 +29,6 @@ angular.module('activities').controller('ActivitiesController', ['$scope', '$sta
 				$location.path('activities/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -62,5 +73,16 @@ angular.module('activities').controller('ActivitiesController', ['$scope', '$sta
 				activityId: $stateParams.activityId
 			});
 		};
+
+		$scope.findWorkout = function() {
+			$scope.workoutplan = Workoutplans.get({ 
+				workoutplanId: '56153637974a3e882c29c639'
+			});
+		};
 	}
-]);
+])
+.directive('taskForm', function(taskReps, taskWeight, taskBaselift) {
+  return {
+    template: 'Name: {{customer.name}} Address: {{taskBaselift}}'
+  };
+});

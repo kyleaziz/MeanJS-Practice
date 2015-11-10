@@ -1,6 +1,6 @@
 <section data-ng-controller="HomeController">
 	
-	<div>
+	<div ng-hide="authentication.user.latestStat">
 		<h2>Welcome to the LP Family!</h2>
 		<p>You can use this app to view your workouts and record your activity</p>
 		<p></p>
@@ -11,29 +11,48 @@
 				<em>Sign Up</em>
 				to get started.
 			</li>
-			<li ng-hide="authentication.user.latestStat">Click <em>My Results</em> under the <em>Testing Week</em> menu heading to enter your test week results</li>
+			<li>Click <em>My Results</em> under the <em>Testing Week</em> menu heading to enter your test week results</li>
 			<li>Click the <em>Workouts</em> menu heading to see the workouts for this week</li>
 		</ul>
 	</div>
-	<section data-ng-controller="UserstatsController" data-ng-init="findMyLatest(authentication.user.latestStat)" ng-if="authentication.user.latestStat">
-        <h3>{{userstat.testWeek}} Results</h3>
-  <div data-ng-show="userstat.snatchMax"> Snatch: {{userstat.snatchMax}} lbs<br/></div>
-  <div data-ng-show="userstat.cleanJerkMax"> Clean and Jerk: {{userstat.cleanJerkMax}} lbs<br/></div>
-  <div data-ng-show="userstat.benchMax"> Bench Press: {{userstat.benchMax}} lbs<br/></div>
-  <div data-ng-show="userstat.deadMax"> Deadlift: {{userstat.deadMax}} lbs<br/></div>
-  <div data-ng-show="userstat.backSquatMax"> Back Squat: {{userstat.backSquatMax}} lbs<br/></div>
-  <div data-ng-show="userstat.sixLengthTime"> Six Lengths Time: {{userstat.sixLengthTime}} seconds<br/></div>
-  <div data-ng-show="userstat.burpeeMax"> Burpee Test Score: {{userstat.burpeeMax}} <br/></div>
-  <div data-ng-show="userstat.beepTestScore"> Beep Test Score: {{userstat.beepTestScore}} <br/></div>
-  <div data-ng-show="userstat.lpMileTime"> LP Mile Time: {{userstat.lpMileTime}} seconds <br/></div>
-  <div data-ng-show="userstat.kmRow"> 1 km Row Time: {{userstat.kmRow}} seconds <br/></div>
-  <div data-ng-show="userstat.boxJumpMax"> Box Jump Max: {{userstat.boxJumpMax}} inches<br/></div>
-  <div data-ng-show="userstat.longJumpMax"> Long Jump Max: {{userstat.longJumpMax}} inches<br/></div>
-  <div data-ng-show="userstat.plankTime"> Weighted Plank Time: {{userstat.plankTime}} <br/></div>
-  <div data-ng-show="userstat.chinMax"> Max Chins: {{userstat.chinMax}} <br/></div>
-
+<div ng-show="authentication.user.latestStat">
+<div data-ng-controller="ActivitiesController">
+  <h2>Today's Workout - {{wod.name}}</h2>
+  <!--Loop through the tasks in the workout-->
+  <div class="list-group">
+    <div ng-repeat="task in wod.tasks" class="list-group-item">
+      {{task.name}} - {{- task.description}}
+      <!--If the task has a lift, use a form to capture what the user completed for each set-->
+      <div ng-repeat="set in task.sets track by $index" ng-show="task.baseLift">
+        This lift uses your {{task.baseLift}} one rep max <br/>
+        <!--Default the reps and weight to the recommended settings-->
+        You need to do {{set}} sets of {{task.reps[$index]}} reps at {{task.weights[$index]}} % of your ORM <br/>
+        <!--if the user has an existing max for the lift, calculate the actual weight they need to put on the bar-->
+        This means you need to lift {{task.weights[$index]*userstat.snatchMax/100}}
+      </div>
+    </div>
+  </div>
+</div>
+	<div data-ng-controller="UserstatsController" data-ng-init="findMyLatest(authentication.user.latestStat)" ng-if="authentication.user.latestStat">
+    <h3>My Testing Measurements</h3>
+    <div data-ng-show="userstat.snatchMax"> Snatch: {{userstat.snatchMax}} lbs<br/></div>
+    <div data-ng-show="userstat.cleanJerkMax"> Clean and Jerk: {{userstat.cleanJerkMax}} lbs<br/></div>
+    <div data-ng-show="userstat.benchMax"> Bench Press: {{userstat.benchMax}} lbs<br/></div>
+    <div data-ng-show="userstat.deadMax"> Deadlift: {{userstat.deadMax}} lbs<br/></div>
+    <div data-ng-show="userstat.backSquatMax"> Back Squat: {{userstat.backSquatMax}} lbs<br/></div>
+    <div data-ng-show="userstat.sixLengthTime"> Six Lengths Time: {{userstat.sixLengthTime}} seconds<br/></div>
+    <div data-ng-show="userstat.burpeeMax"> Burpee Test Score: {{userstat.burpeeMax}} <br/></div>
+    <div data-ng-show="userstat.beepTestScore"> Beep Test Score: {{userstat.beepTestScore}} <br/></div>
+    <div data-ng-show="userstat.lpMileTime"> LP Mile Time: {{userstat.lpMileTime}} seconds <br/></div>
+    <div data-ng-show="userstat.kmRow"> 1 km Row Time: {{userstat.kmRow}} seconds <br/></div>
+    <div data-ng-show="userstat.boxJumpMax"> Box Jump Max: {{userstat.boxJumpMax}} inches<br/></div>
+    <div data-ng-show="userstat.longJumpMax"> Long Jump Max: {{userstat.longJumpMax}} inches<br/></div>
+    <div data-ng-show="userstat.plankTime"> Weighted Plank Time: {{userstat.plankTime}} <br/></div>
+    <div data-ng-show="userstat.chinMax"> Max Chins: {{userstat.chinMax}} <br/></div>
+    <a href="/#!/myUserstats">Add or edit your one rep maxes</a>
     <div class="alert alert-warning text-center" data-ng-hide="!userstats.$resolved || userstats.length">
       You haven't recorded test week results yet, why don't you <a href="/#!/userstats/create">enter them now</a>?
     </div>
-</section>
+</div>
+</div>
 </section>
