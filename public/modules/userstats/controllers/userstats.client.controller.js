@@ -23,7 +23,7 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 				boxJumpMax: this.boxJumpMax,
 				longJumpMax: this.longJumpMax,
 				beepTestScore: this.beepTestScore,
-				testWeek: 'September 2015 Test Week'
+				testWeek: 'November 2015 Test Week'
 			});
 
 			// Redirect after save
@@ -95,7 +95,7 @@ angular.module('userstats').controller('UserstatsController', ['$scope', '$state
 		// Find logged in user's userstat for Sept
 		$scope.findMySept = function() {
 			$scope.userstat = Userstats.query({// $and: [{
-				testWeek: 'September 2015 Test Week'//},{user: Authentication.user._id}]
+				testWeek: 'November 2015 Test Week'//},{user: Authentication.user._id}]
 			});
 		};
 

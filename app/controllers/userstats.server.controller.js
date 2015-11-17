@@ -109,7 +109,7 @@ exports.listMine = function(req, res) {
 
 exports.listMonth = function(req, res) { 
 	var user = new User(req.user);
-	Userstat.find({testWeek: 'September 2015 Test Week'}).sort('-created').populate('user', 'displayName').exec(function(err, userstats) {
+	Userstat.find({testWeek: 'November 2015 Test Week'}).sort('-created').populate('user', 'displayName').exec(function(err, userstats) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
