@@ -21,13 +21,13 @@ var ActivitySchema = new Schema({
 		type: String
 	},
 	reps: {
-		type: Number
+		type: String
 	},
 	sets: {
-		type: Number
+		type: String
 	},
 	weight: {
-		type: Number
+		type: String
 	},
 	user: {
 		type: Schema.ObjectId,

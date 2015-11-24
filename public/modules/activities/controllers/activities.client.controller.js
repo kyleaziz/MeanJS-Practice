@@ -4,12 +4,18 @@
 angular.module('activities').controller('ActivitiesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Activities', 'Workoutplans', 'Userstats',
 	function($scope, $stateParams, $location, Authentication, Activities, Workoutplans, Userstats) {
 		$scope.authentication = Authentication;
+		$scope.wodid = '561214765b37bf414af0b7de';
 		$scope.wod = Workoutplans.get({ 
-				workoutplanId: '56123e3ca1579acc49c17db7'
+				workoutplanId: $scope.wodid
 			});
 		$scope.userstat = Userstats.get({ 
 				userstatId: Authentication.user.latestStat
 			});
+		$scope.liftdefs = Workoutplans.get({ 
+				workoutplanId: $scope.wodid
+			});
+		$scope.acts = Activities.get({workout: $scope.wodid});
+		$scope.status = {tasks: [{sets:[,,,,,]},{sets:[,,,,,]},{sets:[,,,,,]},{sets:[,,,,,]},{sets:[,,,,,]},{sets:[,,,,,]},{sets:[,,,,,]}]};
 
 		// Create new Activity
 		$scope.create = function() {
@@ -18,7 +24,30 @@ angular.module('activities').controller('ActivitiesController', ['$scope', '$sta
 				name: this.name,
 				reps: this.reps,
 				sets: this.sets,
-				weight: this.weight,
+				weight: this.weight//,
+				//baseLift: this.baseLift,
+				//workout: this.wod,
+				//task: this.task
+			});
+
+			// Redirect after save
+			activity.$save(function(response) {
+				$location.path('activities/' + response._id);
+
+				// Clear form fields
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		//copy of old create in case I eff things up
+		$scope.createold = function() {
+			// Create new Activity object
+			var activity = new Activities ({
+				name: this.name,
+				reps: this.reps,
+				sets: this.sets,
+				weight: this.weights,
 				baseLift: this.baseLift,
 				workout: this.wod,
 				task: this.task
@@ -28,6 +57,30 @@ angular.module('activities').controller('ActivitiesController', ['$scope', '$sta
 			activity.$save(function(response) {
 				$location.path('activities/' + response._id);
 
+				// Clear form fields
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		//Save activity from the workout view
+		$scope.storeact = function(workout, parindex, index) {
+			// Create new Activity object
+			var activity = new Activities ({
+				name: workout.tasks[parindex].name,
+				reps: workout.tasks[parindex].reps[index],
+				sets: workout.tasks[parindex].sets[index],
+				weight: workout.tasks[parindex].weights[index],
+				baseLift: workout.tasks[parindex].baseLift,
+				task: workout.tasks[parindex]._id,
+				workout: workout._id
+			});
+
+			// Redirect after save
+			activity.$save(function(response) {
+				//$location.path('activities/' + response._id);
+				$scope.status.tasks[parindex].sets[index] = 'complete';
+				//$scope.status = 'kyle';
 				// Clear form fields
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
@@ -80,9 +133,9 @@ angular.module('activities').controller('ActivitiesController', ['$scope', '$sta
 			});
 		};
 	}
-])
-.directive('taskForm', function(taskReps, taskWeight, taskBaselift) {
-  return {
-    template: 'Name: {{customer.name}} Address: {{taskBaselift}}'
-  };
-});
+	]);
+//.directive('taskForm', function(taskReps, taskWeight, taskBaselift) {
+//  return {
+//    template: 'Name: {{customer.name}} Address: {{taskBaselift}}'
+//  };
+//});

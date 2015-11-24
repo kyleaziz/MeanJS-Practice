@@ -18,4 +18,18 @@
 			<span data-ng-bind="activity.user.displayName"></span>
 		</em>
 	</small>
+	<br/><br/>
+	reps: {{activity.reps}}
+	<br/><br/>
+	sets: {{activity.sets}}
+	<br/><br/>
+	weight: {{activity.weight}}
+	<br/><br/>
+	user: {{activity.user.displayName}}
+	<br/><br/>
+	task: {{activity.task.name}} <span ng-show="activity.task.description">{{activity.task.description}}</span>
+	<br/><br/>
+	workout: {{activity.workout.name}}
+	<br/><br/>
+	base lift: {{activity.baseLift}}
 </section>
