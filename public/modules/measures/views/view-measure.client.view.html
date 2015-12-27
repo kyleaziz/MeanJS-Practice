@@ -1,0 +1,21 @@
+<section data-ng-controller="MeasuresController" data-ng-init="findOne()">
+	<div class="page-header">
+        <h1>Latest Measurements for {{measure.user.displayName}}</h1>
+    </div>
+    
+    <div data-ng-repeat="name in names" ng-show="measure[name.dbid][0]"> 
+        <b data-ng-bind="name.name"></b> 
+        - {{measure[name.dbid][0].value}} {{measure[name.dbid][0].units}}
+        <small class="list-group-item-text">
+           - Posted on <span data-ng-bind="measure[name.dbid][0].date | date: M-d-yy"></span>
+        </small>
+        <!--div class="list-group">
+            <div class="list-group-item">
+                {{measure[name.dbid][0].value}} {{measure[name.dbid][0].units}}
+                <small class="list-group-item-text">
+                    - Posted on <span data-ng-bind="measure[name.dbid][0].date | date: M-d-yy"></span>
+                </small>
+            </div>
+        </div-->
+    </div>
+</section>

@@ -102,6 +102,11 @@ UserSchema.add({latestStat: {
 		type: Schema.ObjectId,
 		ref: 'Userstat'
 	}});
+
+UserSchema.add({measure: {
+		type: Schema.ObjectId,
+		ref: 'Measure'
+	}});
 /**
  * Hook a pre save method to hash the password
  */

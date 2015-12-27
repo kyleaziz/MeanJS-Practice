@@ -20,8 +20,6 @@ module.exports = function(app) {
 		.put(users.requiresLogin, userstats.hasAuthorization, userstats.update)
 		.delete(users.requiresLogin, userstats.hasAuthorization, userstats.delete);
 
-
-
 	// Finish by binding the Userstat middleware
 	app.param('userstatId', userstats.userstatByID);
 };

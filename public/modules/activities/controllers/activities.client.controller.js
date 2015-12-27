@@ -132,6 +132,13 @@ angular.module('activities').controller('ActivitiesController', ['$scope', '$sta
 				workoutplanId: '56153637974a3e882c29c639'
 			});
 		};
+
+		/*$scope.calcWeight = function(baseLift, percent) {
+			$scope.workoutplan = Workoutplans.get({ 
+				workoutplanId: '56153637974a3e882c29c639'
+			});
+		};*/
+
 	}
 	]);
 //.directive('taskForm', function(taskReps, taskWeight, taskBaselift) {

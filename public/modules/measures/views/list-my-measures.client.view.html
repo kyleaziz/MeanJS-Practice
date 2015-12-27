@@ -1,0 +1,45 @@
+<section data-ng-controller="MeasuresController" data-ng-init="findMyMeasure(authentication.user.measure)">
+    <div class="page-header">
+        <h1>Test Measurements for {{authentication.user.displayName}}</h1>
+    </div>
+    <div ng-hide="measure.shareable" class="form-group">
+        <button type="button" class="btn btn-default" ng-click='makeShareable()' style="float: left">Share</button>
+        <span style="margin-left: 15px; vertical-align: middle; line-height: 34px;">Click share to make your results visible to other gym members</span>
+    <br/></div>
+    <div ng-show="measure.shareable" class="form-group">
+        <button type="button" class="btn btn-default" ng-click='unShare()' style="float: left">Unshare</button>
+        <span style="margin-left: 15px; vertical-align: middle; line-height: 34px;">Click unshare to hide your results from other gym members</span>
+    <br/></div>
+    
+    <div data-ng-repeat="name in names">
+        <h4 data-ng-bind="name.name"></h4>
+        <div ng-hide='formVisible[name.name]'><button type="button" class="btn btn-default" ng-click='showForm(name.name)'> <i class="glyphicon glyphicon-plus"></i> Record New Measure</button><br/><br/></div>
+        <form class="form-horizontal" data-ng-submit="addMeasure(name.dbid, forminput[name.name], name.units)" ng-show='formVisible[name.name]'>
+            <fieldset>
+                <div class="form-group">
+                    <div class="controls">
+                        <input type="number" data-ng-model="forminput[name.name]" id="forminput[name.name]" class="form-control" required> {{name.units}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Store New Measure" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+        <div class="list-group" data-ng-repeat="record in measure[name.dbid] track by $index">
+            <div class="list-group-item">
+                <strong class="list-group-item-heading" ng-show="$index === 0">Latest:</strong>
+                {{measure[name.dbid][$index].value}} {{measure[name.dbid][$index].units}}
+                <small class="list-group-item-text">
+                    - Posted on <span data-ng-bind="measure[name.dbid][$index].date | date: M-d-yy"></span>
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="measure">
+      You haven't recorded test day results yet, why don't you <a href="/#!/measures/create">enter them now</a>?
+    </div>
+</section>

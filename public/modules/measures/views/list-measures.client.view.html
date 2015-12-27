@@ -1,0 +1,13 @@
+<section data-ng-controller="MeasuresController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Measures</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="measure in measures" data-ng-href="#!/measures/{{measure._id}}" class="list-group-item">
+            <b data-ng-bind="measure.user.displayName"></b>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!measures.$resolved || measures.length">
+    	No Measures yet, why don't you <a href="/#!/measures/create">create one</a>?
+    </div>
+</section>
