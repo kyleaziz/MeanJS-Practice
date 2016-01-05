@@ -1,14 +1,14 @@
 <section data-ng-controller="WorkoutplansController" data-ng-init="findOne()">
 	<div class="page-header">
 		<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user.roles.indexOf('admin') > -1))">  <!-- Alternative conditionals: authentication.user._id == workoutplan.user._id)) && (authentication.user.roles.indexOf('admin') > -1))-->
-    <a class="btn btn-primary" href="/#!/workoutplans/{{workoutplan._id}}/edit">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" data-ng-click="remove();">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
-  </div>
-  <h1 data-ng-bind="workoutplan.name"></h1>
+      <a class="btn btn-primary" href="/#!/workoutplans/{{workoutplan._id}}/edit">
+        <i class="glyphicon glyphicon-edit"></i>
+      </a>
+      <a class="btn btn-primary" data-ng-click="remove();">
+        <i class="glyphicon glyphicon-trash"></i>
+      </a>
+    </div>
+    <h1 data-ng-bind="workoutplan.name"></h1>
   </div>
 
 	<p class="lead" data-ng-bind="workoutplan.description"></p>

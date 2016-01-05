@@ -40,7 +40,7 @@
           <div ng-hide="task.sets">
             <i class="glyphicon glyphicon-ok" style="color:green" ng-show="status.tasks[$index].sets[0]"></i>
             <button type="button" class="btn btn-default" ng-click='storeact(liftdefs, $index, 0)' ng-hide="status.tasks[$index].sets[0]">Mark Complete</button>
-          </div> 
+          </div>
           <div ng-show="task.sets">
             <span ng-show="task.baseLift">This lift uses your {{task.baseLift}} one rep max <br/></span>
             <table class="table">

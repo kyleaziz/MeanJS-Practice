@@ -1,12 +1,11 @@
 'use strict';
 
 // Measures controller
-angular.module('measures').controller('MeasuresController', ['$scope', '$log', '$stateParams', '$location', 'Authentication', 'Measures', 'MyMeasures',
-	function($scope, $log, $stateParams, $location, Authentication, Measures, MyMeasures) {
+angular.module('measures').controller('MeasuresController', ['$scope', '$log', '$stateParams', '$window', '$location', 'Authentication', 'Measures', 'MyMeasures',
+	function($scope, $log, $stateParams, $window, $location, Authentication, Measures, MyMeasures) {
 		$scope.authentication = Authentication;
 		$scope.date = new Date();
 		$scope.names = [
-			
 			{dbid: 'bodyWeight', name: 'Bodyweight', units: 'lbs'},
 			{dbid: 'frontSquatORM', name: 'Front Squat One Rep Max', units: 'Kgs'},
 			{dbid: 'frontSquatFive', name: 'Front Squat Five Rep Max', units: 'Kgs'},
@@ -44,10 +43,12 @@ angular.module('measures').controller('MeasuresController', ['$scope', '$log', '
 
 			// Redirect after save
 			measure.$save(function(response) {
-				$location.path('measures/' + response._id);
-
+				//$scope.measure = Measures.get({ 
+				//	measureId: response._id
+				//});
+				//$location.path('measures/' + response._id);
+				$window.location.reload();
 				// Clear form fields
-				$scope.snatchORM = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

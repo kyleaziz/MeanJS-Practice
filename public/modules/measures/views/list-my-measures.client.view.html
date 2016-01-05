@@ -61,8 +61,8 @@
         <br/></div>
     </div>
     <div data-ng-repeat="name in names" data-ng-show="authentication.user.measure">
-        <h4 data-ng-bind="name.name"></h4>
-        <div ng-hide='formVisible[name.name]'><button type="button" class="btn btn-default" ng-click='showForm(name.name)'> <i class="glyphicon glyphicon-plus"></i> Record New Measure</button><br/><br/></div>
+        <!--div ng-hide='formVisible[name.name]' class="pull-right"><button type="button" class="btn btn-default" ng-click='showForm(name.name)'> <i class="glyphicon glyphicon-plus"></i> Record New Measure</button><br/><br/></div-->
+        <h4>{{name.name}} <button type="button" class="btn btn-default" ng-click='showForm(name.name)' ng-hide='formVisible[name.name]'> <i class="glyphicon glyphicon-plus"></i> Record New Measure</button></h4>
         <form class="form-horizontal" data-ng-submit="addMeasure(name.dbid, forminput[name.name], name.units)" ng-show='formVisible[name.name]'>
             <fieldset>
                 <div class="form-group">
