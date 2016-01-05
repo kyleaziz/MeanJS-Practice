@@ -34,7 +34,12 @@ angular.module('measures').controller('MeasuresController', ['$scope', '$log', '
 		$scope.create = function() {
 			// Create new Measure object
 			var measure = new Measures ({
-				snatchORM: [{value: this.snatchORMval, date: $scope.date}]
+				snatchORM: [{value: this.snatchORMval, date: $scope.date, units: 'Kgs'}],
+				deadORM: [{value: this.deadORMval, date: $scope.date, units: 'Kgs'}],
+				backSquatORM: [{value: this.backSquatORMval, date: $scope.date, units: 'Kgs'}],
+				benchORM: [{value: this.benchORMval, date: $scope.date, units: 'Kgs'}],
+				cleanJerkORM: [{value: this.cleanJerkORMval, date: $scope.date, units: 'Kgs'}],
+				bodyWeight: [{value: this.bodyWeightval, date: $scope.date, units: 'lbs'}]
 			});
 
 			// Redirect after save
@@ -54,7 +59,7 @@ angular.module('measures').controller('MeasuresController', ['$scope', '$log', '
 
 			// Redirect after save
 			measure.$save(function(response) {
-				$location.path('measures/' + response._id + '/edit');
+				$location.path('myMeasures/');
 				// Clear form fields
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;

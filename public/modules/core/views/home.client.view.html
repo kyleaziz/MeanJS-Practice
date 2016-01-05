@@ -74,10 +74,14 @@
     </div>
     <div data-ng-controller="MeasuresController" data-ng-init="findMyMeasure(authentication.user.measure)">
       <h3>My Latest Meaures</h3>
-      <div data-ng-repeat="name in names" ng-show="measure[name.dbid][0]"> 
-        <b data-ng-bind="name.name"></b> - {{measure[name.dbid][0].value}} {{measure[name.dbid][0].units}}
+      <div ng-show="authentication.user.measure">
+        <div data-ng-repeat="name in names" ng-show="measure[name.dbid][0]"> 
+          <b data-ng-bind="name.name"></b> - {{measure[name.dbid][0].value}} {{measure[name.dbid][0].units}}
+        </div>
       </div>
-      <a href="/#!/myMeasures">Record testing results</a>
+      <div>
+        <a href="/#!/myMeasures">Record testing results</a>
+      </div>
     </div>
   </div>
 </section>

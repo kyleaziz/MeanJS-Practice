@@ -2,16 +2,65 @@
     <div class="page-header">
         <h1>Test Measurements for {{authentication.user.displayName}}</h1>
     </div>
-    <div ng-hide="measure.shareable" class="form-group">
-        <button type="button" class="btn btn-default" ng-click='makeShareable()' style="float: left">Share</button>
-        <span style="margin-left: 15px; vertical-align: middle; line-height: 34px;">Click share to make your results visible to other gym members</span>
-    <br/></div>
-    <div ng-show="measure.shareable" class="form-group">
-        <button type="button" class="btn btn-default" ng-click='unShare()' style="float: left">Unshare</button>
-        <span style="margin-left: 15px; vertical-align: middle; line-height: 34px;">Click unshare to hide your results from other gym members</span>
-    <br/></div>
-    
-    <div data-ng-repeat="name in names">
+    <div class="col-md-12" data-ng-hide="authentication.user.measure">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="bodyWeight">Body Weight</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="bodyWeightval" id="bodyWeight" class="form-control"> lbs
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="snatchORM">Snatch One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="snatchORMval" id="snatchORM" class="form-control"> Kgs
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="deadORM">Deadlift One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="deadORMval" id="deadORM" class="form-control"> Kgs
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="benchORM">Bench One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="benchORMval" id="benchORM" class="form-control"> Kgs
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="cleanJerkORM">Clean and Jerk One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="cleanJerkORMval" id="cleanJerkORM" class="form-control"> Kgs
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="backSquatORM">Squat One Rep Max</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="backSquatORMval" id="backSquatORM" class="form-control"> Kgs
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div data-ng-show="authentication.user.measure">
+        <div ng-hide="measure.shareable" class="form-group">
+            <button type="button" class="btn btn-default" ng-click='makeShareable()' style="float: left">Share</button>
+            <span style="margin-left: 15px; vertical-align: middle; line-height: 34px;">Click share to make your results visible to other gym members</span>
+        <br/></div>
+        <div ng-show="measure.shareable" class="form-group">
+            <button type="button" class="btn btn-default" ng-click='unShare()' style="float: left">Unshare</button>
+            <span style="margin-left: 15px; vertical-align: middle; line-height: 34px;">Click unshare to hide your results from other gym members</span>
+        <br/></div>
+    </div>
+    <div data-ng-repeat="name in names" data-ng-show="authentication.user.measure">
         <h4 data-ng-bind="name.name"></h4>
         <div ng-hide='formVisible[name.name]'><button type="button" class="btn btn-default" ng-click='showForm(name.name)'> <i class="glyphicon glyphicon-plus"></i> Record New Measure</button><br/><br/></div>
         <form class="form-horizontal" data-ng-submit="addMeasure(name.dbid, forminput[name.name], name.units)" ng-show='formVisible[name.name]'>
@@ -38,8 +87,5 @@
                 </small>
             </div>
         </div>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="measure">
-      You haven't recorded test day results yet, why don't you <a href="/#!/measures/create">enter them now</a>?
     </div>
 </section>
